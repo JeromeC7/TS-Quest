@@ -212,9 +212,9 @@ function bataille(hero1: Hero, hero2: Hero): string{
         console.log(hero1);
         console.log(hero2);
     }
-    let result: HTMLElement | null = document.getElementById("result")
+    let result = document.getElementById("result") as HTMLElement;
     result!.innerHTML = "And the winner is...";
-    const imgHero: HTMLImageElement | null = document.getElementById("imgHero") as HTMLImageElement;
+    const imgHero = document.getElementById("imgHero") as HTMLImageElement;
     if(!hero1.isAlive() && !hero2.isAlive()){
         result!.innerHTML = "It's a draw!";
         imgHero!.src = hero1.image;
@@ -255,9 +255,9 @@ const bayram = new HeroSword("Bayram",20,100);
 // console.log("GAME quentin,jerome: "+bataille(quentin,jerome));
 // console.log("GAME jerome,jerome: "+bataille(jerome,jerome));
 
-const gameButton: HTMLElement | null = document.getElementById("gameButton");
-const valueHero1: HTMLInputElement | null = document.getElementById("valueHero1") as HTMLInputElement;
-const valueHero2: HTMLInputElement | null = document.getElementById("valueHero2") as HTMLInputElement;
+const gameButton = document.getElementById("gameButton");
+const valueHero1 = document.getElementById("valueHero1") as HTMLInputElement;
+const valueHero2 = document.getElementById("valueHero2") as HTMLInputElement;
 
 if(gameButton){
     gameButton.addEventListener("click",() => {
@@ -270,11 +270,6 @@ if(gameButton){
     console.log("GAME Hero1 / Hero2: "+ bataille(hero1,hero2));
   });
 }
-
-
-
-
-
 
 // Début de la partie
 // joan.attack(leon);
