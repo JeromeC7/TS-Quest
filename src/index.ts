@@ -222,6 +222,21 @@ function bataille(hero1: Hero, hero2: Hero): string{
     }
 }
 
+function buildHero(heroType:String) :Hero{
+    switch (heroType){
+      case "HeroAxe":
+        return new HeroAxe(String(heroType),20,100);
+        break;
+      case "HeroSpear":
+        return new HeroSpear(String(heroType),20,100);
+        break;
+      case "HeroSword":
+        return new HeroSword(String(heroType),20,100);
+        break;
+    }
+    return new Hero("Hero Geek",20,100);
+}
+
 // Deux instances de Hero
 const joan = new Hero("Joan",20,100);
 const leon = new Hero("Leon",20,100);
@@ -233,12 +248,17 @@ const bayram = new HeroSword("Bayram",20,100);
 // console.log("GAME jerome,jerome: "+bataille(jerome,jerome));
 
 const gameButton: HTMLElement | null = document.getElementById("gameButton");
-const valueHero1: HTMLInputElement | null = document.getElementById("valueHero1");
-const valueHero2: HTMLElement | null = document.getElementById("valueHero2");
+const valueHero1: HTMLInputElement | null = document.getElementById("valueHero1") as HTMLInputElement;
+const valueHero2: HTMLInputElement | null = document.getElementById("valueHero2") as HTMLInputElement;
 if(gameButton){
     gameButton.addEventListener("click",() => {
-    const hero1 = `new ${valueHero1!.value}(${valueHero1!.value},20,100)`;
-    console.log("GAME leon,Quentin: "+bataille(leon,quentin));
+    // const hero1: Hero = `new ${valueHero1!.value}(${valueHero1!.value},20,100)`;
+    // const hero2: Hero = `new ${valueHero2!.value}(${valueHero2!.value},20,100)`;
+    let hero1 = buildHero(valueHero1.value);
+    hero1.setName("Héro 1");
+    let hero2 = buildHero(valueHero2.value);
+    hero2.setName("Héro 2");
+    console.log("GAME Hero1 / Hero2: "+ bataille(hero1,hero2));
   });
 }
 

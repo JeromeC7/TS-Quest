@@ -224,6 +224,20 @@ function bataille(hero1, hero2) {
         return ("".concat(hero1.getName(), " wins"));
     }
 }
+function buildHero(heroType) {
+    switch (heroType) {
+        case "HeroAxe":
+            return new HeroAxe(String(heroType), 20, 100);
+            break;
+        case "HeroSpear":
+            return new HeroSpear(String(heroType), 20, 100);
+            break;
+        case "HeroSword":
+            return new HeroSword(String(heroType), 20, 100);
+            break;
+    }
+    return new Hero("Hero Geek", 20, 100);
+}
 // Deux instances de Hero
 var joan = new Hero("Joan", 20, 100);
 var leon = new Hero("Leon", 20, 100);
@@ -234,9 +248,19 @@ var bayram = new HeroSword("Bayram", 20, 100);
 // console.log("GAME quentin,jerome: "+bataille(quentin,jerome));
 // console.log("GAME jerome,jerome: "+bataille(jerome,jerome));
 var gameButton = document.getElementById("gameButton");
-gameButton.addEventListener("click", function () {
-    console.log("GAME leon,Quentin: " + bataille(leon, quentin));
-});
+var valueHero1 = document.getElementById("valueHero1");
+var valueHero2 = document.getElementById("valueHero2");
+if (gameButton) {
+    gameButton.addEventListener("click", function () {
+        // const hero1: Hero = `new ${valueHero1!.value}(${valueHero1!.value},20,100)`;
+        // const hero2: Hero = `new ${valueHero2!.value}(${valueHero2!.value},20,100)`;
+        var hero1 = buildHero(valueHero1.value);
+        hero1.setName("Héro 1");
+        var hero2 = buildHero(valueHero2.value);
+        hero2.setName("Héro 2");
+        console.log("GAME Hero1 / Hero2: " + bataille(hero1, hero2));
+    });
+}
 // Début de la partie
 // joan.attack(leon);
 // leon.attack(joan);
