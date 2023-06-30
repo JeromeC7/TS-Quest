@@ -107,6 +107,7 @@ var __extends = (this && this.__extends) || (function () {
 // const instance = new MaClasse();
 var Hero = /** @class */ (function () {
     function Hero(name, power, life) {
+        this.image = "../img/hero.jpg";
         this.name = name;
         this.power = power;
         this.life = life;
@@ -145,6 +146,7 @@ var HeroAxe = /** @class */ (function (_super) {
     function HeroAxe(name, power, life) {
         var _this = _super.call(this, name, power, life) || this;
         _this.weapon = new Weapon('axe', 10);
+        _this.image = "../img/heroAxe.jpg";
         return _this;
     }
     HeroAxe.prototype.attack = function (opponent) {
@@ -162,6 +164,7 @@ var HeroSword = /** @class */ (function (_super) {
     function HeroSword(name, power, life) {
         var _this = _super.call(this, name, power, life) || this;
         _this.weapon = new Weapon('sword', 20);
+        _this.image = "../img/heroSword.jpg";
         return _this;
     }
     HeroSword.prototype.attack = function (opponent) {
@@ -179,6 +182,7 @@ var HeroSpear = /** @class */ (function (_super) {
     function HeroSpear(name, power, life) {
         var _this = _super.call(this, name, power, life) || this;
         _this.weapon = new Weapon('spear', 30);
+        _this.image = "../img/heroSpear.jpg";
         return _this;
     }
     HeroSpear.prototype.attack = function (opponent) {
@@ -210,17 +214,21 @@ function bataille(hero1, hero2) {
         console.log(hero2);
     }
     var result = document.getElementById("result");
-    result.innerHTML = "Résultat";
+    result.innerHTML = "And the winner is...";
+    var imgHero = document.getElementById("imgHero");
     if (!hero1.isAlive() && !hero2.isAlive()) {
         result.innerHTML = "It's a draw!";
+        imgHero.src = hero1.image;
         return ("It's a draw");
     }
     else if (!hero1.isAlive()) {
         result.innerHTML = "".concat(hero2.getName(), " wins!");
+        imgHero.src = hero2.image;
         return ("".concat(hero2.getName(), " wins"));
     }
     else {
         result.innerHTML = "".concat(hero1.getName(), " wins!");
+        imgHero.src = hero1.image;
         return ("".concat(hero1.getName(), " wins"));
     }
 }

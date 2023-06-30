@@ -112,6 +112,7 @@ class Hero{
   private name: string;
   private power: number;
   private life: number;
+  image: string = "../img/hero.jpg";
   weapon!:Weapon;
 
   constructor(name: string,power: number,life: number){
@@ -151,6 +152,7 @@ class HeroAxe extends Hero{
     constructor(name: string, power: number, life: number){
         super(name,power,life);
         this.weapon = new Weapon('axe',10);
+        this.image = "../img/heroAxe.jpg";
  
     }
     public attack(opponent: Hero): void{
@@ -165,6 +167,7 @@ class HeroSword extends Hero{
     constructor(name: string, power: number, life: number){
         super(name,power,life);
         this.weapon = new Weapon('sword',20);
+        this.image = "../img/heroSword.jpg";
     }
     public attack(opponent: Hero): void{
         if (opponent instanceof HeroSpear){
@@ -179,6 +182,7 @@ class HeroSpear extends Hero{
     constructor(name: string, power: number, life: number){
         super(name,power,life);
         this.weapon = new Weapon('spear',30);
+        this.image = "../img/heroSpear.jpg";
     }
     public attack(opponent: Hero): void{
         if (opponent instanceof HeroAxe){
@@ -209,15 +213,19 @@ function bataille(hero1: Hero, hero2: Hero): string{
         console.log(hero2);
     }
     let result: HTMLElement | null = document.getElementById("result")
-    result!.innerHTML = "Résultat";
+    result!.innerHTML = "And the winner is...";
+    const imgHero: HTMLImageElement | null = document.getElementById("imgHero") as HTMLImageElement;
     if(!hero1.isAlive() && !hero2.isAlive()){
         result!.innerHTML = "It's a draw!";
+        imgHero!.src = hero1.image;
         return("It's a draw");
     }else if(!hero1.isAlive()){
         result!.innerHTML = `${hero2.getName()} wins!`;
+        imgHero!.src = hero2.image;
         return(`${hero2.getName()} wins`);
     }else{
         result!.innerHTML = `${hero1.getName()} wins!`;
+        imgHero!.src = hero1.image;
         return(`${hero1.getName()} wins`);
     }
 }
@@ -250,6 +258,7 @@ const bayram = new HeroSword("Bayram",20,100);
 const gameButton: HTMLElement | null = document.getElementById("gameButton");
 const valueHero1: HTMLInputElement | null = document.getElementById("valueHero1") as HTMLInputElement;
 const valueHero2: HTMLInputElement | null = document.getElementById("valueHero2") as HTMLInputElement;
+
 if(gameButton){
     gameButton.addEventListener("click",() => {
     // const hero1: Hero = `new ${valueHero1!.value}(${valueHero1!.value},20,100)`;
